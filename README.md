@@ -123,4 +123,5 @@ python3 train.py path/to/file_train.h5 (...) #Additional flags here
 
 ## The BITMAP project
 
-**[Domenico - Please put some text here about the BITMAP project]**
+This repository is part of the BITMAP project funded by the European Union’s Horizon 2020 research and innovation programme
+under the Marie Sklodowska-Curie Grant Agreement No. 897276.
