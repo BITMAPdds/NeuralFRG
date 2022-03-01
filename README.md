@@ -2,9 +2,9 @@
 
 This repository contains contains code for training Parametrized Neural Ordinary Differential Equations (PNODEs) on Functional Renormalization Group (fRG) data.
 
-This code was used to obtain the results in the following paper: **[INSERT ARXIV LINK HERE]**.
+This code was used to obtain the results in the following paper: **Deep Learning the Functional Renormalization Group** ([arXiv:2202.13268](https://arxiv.org/abs/2202.13268)).
 
-Author: Matija Medvidović (Matematija)
+Code author: Matija Medvidović (Matematija)
 
 ## Installation
 
