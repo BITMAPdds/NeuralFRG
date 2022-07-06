@@ -74,8 +74,14 @@ def main(args):
 
     batch_size = vertices.shape[0] if args.bsize == -1 else args.bsize
     
-    dset = TensorDataset(vertices, couplings, masks)
-    loader = DataLoader(dset, batch_size=batch_size, shuffle=True, pin_memory=True, drop_last=True)
+    if batch_size <= vertices.shape[0]:
+        dset = TensorDataset(vertices, couplings, masks)
+        loader = DataLoader(dset, batch_size=batch_size, shuffle=True, pin_memory=True, drop_last=True)
+    else:
+        raise RuntimeError(
+            'Batch size must be smaller than the number of training '
+            f'trajectories {vertices.shape[0]}. Got {batch_size}'
+        )
 
     in_dim = couplings.shape[-1]
     pnode = nfrg.PNODE(
@@ -108,6 +114,7 @@ def main(args):
     best_loss = 1e8
     best_epoch = 0
     state_dict = pnode.state_dict()
+    optim_state_dict = optimizer.state_dict()
     
     print('Starting training...', flush=True)
     clock = perf_counter()

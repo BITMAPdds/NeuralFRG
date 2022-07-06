@@ -51,15 +51,13 @@ def checkpoint(
     optim: Optional[Union[Optimizer, dict]] = None,
     epoch: int = 0,
     losses: Optional[Tensor] = None,
+    norms: Optional[Tensor] = None,
     path: str = 'pnode_checkpoint.pt',
     **rest):
 
     model_sd = model.state_dict() if not isinstance(model, dict) else model
 
-    data = {
-        'pnode_state_dict': model_sd,
-        'epoch': epoch,
-    }
+    data = {'pnode_state_dict': model_sd, 'epoch': epoch}
 
     if optim is not None:
         optim_sd = optim.state_dict() if not isinstance(optim, dict) else optim
@@ -67,6 +65,9 @@ def checkpoint(
     
     if losses is not None:
         data['losses'] = losses.detach().cpu()
+        
+    if norms is not None:
+        data['norms'] = norms.detach().cpu()
     
     torch.save(dict(data, **rest), path)
 
